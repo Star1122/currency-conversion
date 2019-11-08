@@ -4,6 +4,7 @@ import * as History from 'history';
 import thunk from 'redux-thunk';
 
 import config from 'config';
+import { setupStore } from 'services/sockets/real-trade';
 import rootReducer from './reducers';
 
 const initialState = {};
@@ -27,5 +28,7 @@ const composedEnhancers = compose(
 );
 
 const store = createStore(rootReducer(history), initialState, composedEnhancers);
+
+setupStore(store);
 
 export default store;

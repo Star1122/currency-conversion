@@ -12,6 +12,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case actionTypes.UPDATE_STATS:
+      return {
+        ...state,
+        stats: action.payload.data,
+      };
+
     case actionTypes.FETCH_STATS:
       return {
         ...state,

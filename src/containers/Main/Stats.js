@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
-
-import { fetchStats } from 'store/converts/actions';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -31,14 +28,7 @@ const useStyles = makeStyles((theme) => ({
 function Stats(props) {
   const classes = useStyles();
 
-  const {
-    stats,
-    fetchStats,
-  } = props;
-
-  useEffect(() => {
-    fetchStats();
-  }, [fetchStats]);
+  const { stats } = props;
 
   return (
     <>
@@ -64,15 +54,10 @@ function Stats(props) {
 
 Stats.propTypes = {
   stats: PropTypes.object.isRequired,
-  fetchStats: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (store) => ({
   stats: store.convertsData.stats,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  fetchStats,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Stats);
+export default connect(mapStateToProps)(Stats);

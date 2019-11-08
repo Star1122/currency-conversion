@@ -1,4 +1,7 @@
 export default {
+  // Update stats
+  UPDATE_STATS: 'UPDATE_STATS',
+
   // Fetch stats
   FETCH_STATS: 'FETCH_STATS',
   FETCH_STATS_SUCCESS: 'FETCH_STATS_SUCCESS',

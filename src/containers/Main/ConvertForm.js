@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
 
 import { fetchCurrencies } from 'store/rates/actions';
-import { convert } from 'store/converts/actions';
+import { convert, fetchStats } from 'store/converts/actions';
 import { CustomInput, CustomSelect } from 'components';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +46,7 @@ function ConvertForm(props) {
     isConverting,
     fetchCurrencies,
     convert,
+    fetchStats,
   } = props;
 
   const [state, setState] = useState({
@@ -66,7 +67,10 @@ function ConvertForm(props) {
   };
 
   const handleClick = () => {
-    convert(state);
+    convert(state)
+      .then(() => {
+        fetchStats();
+      });
   };
 
   return (
@@ -137,6 +141,7 @@ ConvertForm.propTypes = {
   isConverting: PropTypes.bool.isRequired,
   fetchCurrencies: PropTypes.func.isRequired,
   convert: PropTypes.func.isRequired,
+  fetchStats: PropTypes.func.isRequired,
 };
 
 ConvertForm.defaultProps = {
@@ -152,6 +157,7 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchCurrencies,
   convert,
+  fetchStats,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConvertForm);

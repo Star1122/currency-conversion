@@ -1,6 +1,11 @@
 import convertsService from 'services/converts.service';
 import types from './types';
 
+export const updateStats = (data) => ({
+  type: types.UPDATE_STATS,
+  payload: { data },
+});
+
 export const fetchStats = () => (dispatch, getState) => {
   if (getState().convertsData.isFetching) {
     return Promise.reject();

@@ -8,9 +8,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import './style.scss';
 
 import store, { history } from './store';
+import { getSCRealObservable } from './services/sockets/real-trade';
 import App from './App';
 import theme from './theme';
 import * as serviceWorker from './serviceWorker';
+
+getSCRealObservable();
 
 ReactDOM.render(
   <Provider store={store}>
