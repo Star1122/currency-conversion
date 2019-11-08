@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     width: '100vw',
     height: '100vh',
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
+    overflow: 'auto',
   },
 }));
 

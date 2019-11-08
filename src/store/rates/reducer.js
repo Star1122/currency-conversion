@@ -2,50 +2,49 @@ import actionTypes from './types';
 
 const INITIAL_STATE = {
   isFetching: false,
-  isConverting: false,
+  isFetchingCurrencies: false,
 
-  stats: {},
-  converted: null,
+  rates: {},
+  currencies: [],
 
   error: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_STATS:
+    case actionTypes.FETCH_RATES:
       return {
         ...state,
         isFetching: true,
       };
-    case actionTypes.FETCH_STATS_SUCCESS:
+    case actionTypes.FETCH_RATES_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        stats: action.payload.data,
+        rates: action.payload.data,
       };
-    case actionTypes.FETCH_STATS_FAIL:
+    case actionTypes.FETCH_RATES_FAIL:
       return {
         ...state,
         isFetching: false,
         error: action.payload.error,
       };
 
-    case actionTypes.CONVERT:
+    case actionTypes.FETCH_CURRENCIES:
       return {
         ...state,
-        isConverting: true,
-        converted: null,
+        isFetchingCurrencies: true,
       };
-    case actionTypes.CONVERT_SUCCESS:
+    case actionTypes.FETCH_CURRENCIES_SUCCESS:
       return {
         ...state,
-        isConverting: false,
-        converted: action.payload.data,
+        isFetchingCurrencies: false,
+        currencies: action.payload.data,
       };
-    case actionTypes.CONVERT_FAIL:
+    case actionTypes.FETCH_CURRENCIES_FAIL:
       return {
         ...state,
-        isConverting: false,
+        isFetchingCurrencies: false,
         error: action.payload.error,
       };
 

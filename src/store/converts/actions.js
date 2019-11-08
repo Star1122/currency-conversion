@@ -28,3 +28,31 @@ export const fetchStats = () => (dispatch, getState) => {
       throw error;
     });
 };
+
+export const convert = (convertData) => (dispatch, getState) => {
+  if (getState().convertsData.isConverting) {
+    return Promise.reject();
+  }
+
+  dispatch({
+    type: types.CONVERT,
+  });
+
+  return convertsService.convert(convertData)
+    .then((data) => {
+      dispatch({
+        type: types.CONVERT_SUCCESS,
+        payload: { data: data.result },
+      });
+
+      return true;
+    })
+    .catch((error) => {
+      dispatch({
+        type: types.CONVERT_FAIL,
+        payload: { error },
+      });
+
+      throw error;
+    });
+};
