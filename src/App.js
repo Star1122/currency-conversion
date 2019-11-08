@@ -9,11 +9,12 @@ import makeStyles from '@material-ui/styles/makeStyles';
 
 import Main from 'containers/Main';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     width: '100vw',
     height: '100vh',
+    padding: theme.spacing(2),
   },
 }));
 
